@@ -138,13 +138,13 @@ Dialogi
 Serin: “Do you feel it? That pull in your chest... the echo of something great? You were never just a shadow wandering these ruins.” 
 Pelaaja: “Who... are you?” 
 Serin: “A friend. A whisper. The ember that remains. And you... you were fire incarnate.” 
---- 
+
 Kael: “You don’t remember, do you? The screams, the cities swallowed in ash. You’re not lost. You’re hiding from what you are.” 
---- 
+ 
 Serin: “They called you a monster because they were afraid. Afraid of power they couln’t control. Afraid of a world not bound by their rules.” 
---- 
+ 
 Serin: “Justice is written by the ones who survive. Reclaim your truth, your world.” 
----
+
 Lopullinen valinta 
 Serin: “This world is yours by right! You were born to rule it! Burn the old lies down and rise as you once did!” 
 Kael: “Please... if there’s anything left of you, choose something else. Choose to end it.” 

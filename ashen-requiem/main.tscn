@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://defgf7kvif5gk"]
+[gd_scene load_steps=10 format=3 uid="uid://defgf7kvif5gk"]
 
 [ext_resource type="Texture2D" uid="uid://cx4kjvu7dg6x0" path="res://background 1.png" id="1_7mycd"]
 [ext_resource type="Texture2D" uid="uid://c8fuqnwvdhb8a" path="res://background 2.png" id="2_272bh"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bdpln4w6mqrqj" path="res://background 4.png" id="4_kek77"]
 [ext_resource type="Texture2D" uid="uid://brakrkq6pjgqc" path="res://mainlevbuildA.png" id="5_4c57u"]
 [ext_resource type="PackedScene" uid="uid://dme1w4pih0y1m" path="res://scenes/character_body_2d_2.tscn" id="7_5vw27"]
+[ext_resource type="PackedScene" uid="uid://cyvwmwq3fg6xy" path="res://scenes/memory_node.tscn" id="7_272bh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7mycd"]
 texture = ExtResource("5_4c57u")
@@ -1116,46 +1117,49 @@ sources/0 = SubResource("TileSetAtlasSource_7mycd")
 [node name="Node" type="Node"]
 
 [node name="ParallaxBackground" type="Node2D" parent="."]
-position = Vector2(426, 200)
+position = Vector2(426, 239)
 
-[node name="ParallaxLayer" type="Parallax2D" parent="ParallaxBackground"]
+[node name="SkyLayer" type="Parallax2D" parent="ParallaxBackground"]
 texture_repeat = 2
 scroll_scale = Vector2(0.1, 0)
+scroll_offset = Vector2(0, 100)
 repeat_size = Vector2(848, 0)
 repeat_times = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/SkyLayer"]
 texture_filter = 1
 position = Vector2(-1, -113)
 texture = ExtResource("1_7mycd")
 
-[node name="ParallaxLayer2" type="Parallax2D" parent="ParallaxBackground"]
+[node name="Background1" type="Parallax2D" parent="ParallaxBackground"]
 texture_repeat = 2
 scroll_scale = Vector2(0, 0)
+scroll_offset = Vector2(0, 170)
 repeat_size = Vector2(848, 0)
 repeat_times = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
-position = Vector2(-43.5, 0)
-scale = Vector2(0.897406, 1)
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Background1"]
 texture = ExtResource("2_272bh")
 
-[node name="ParallaxLayer3" type="Parallax2D" parent="ParallaxBackground"]
+[node name="Background2" type="Parallax2D" parent="ParallaxBackground"]
 texture_repeat = 2
 scroll_scale = Vector2(0.1, 0.1)
+scroll_offset = Vector2(0, 190)
 repeat_size = Vector2(848, 0)
 repeat_times = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Background2"]
 texture = ExtResource("3_5vw27")
 
-[node name="ParallaxLayer4" type="Parallax2D" parent="ParallaxBackground"]
+[node name="Background3" type="Parallax2D" parent="ParallaxBackground"]
 texture_repeat = 2
 scroll_scale = Vector2(0.2, 0.2)
+scroll_offset = Vector2(0, 41)
 repeat_size = Vector2(848, 0)
 repeat_times = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Background3"]
+position = Vector2(0, 117)
 texture = ExtResource("4_kek77")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -1166,9 +1170,13 @@ tile_set = SubResource("TileSet_ycdy4")
 format = 2
 layer_0/tile_data = PackedInt32Array(131056, 262144, 22, 196592, 262144, 23, 262128, 262144, 24, 131057, 327680, 22, 196593, 327680, 23, 262129, 327680, 24, 131058, 393216, 22, 196594, 393216, 23, 262130, 393216, 24, 131059, 262144, 22, 196595, 262144, 23, 262131, 262144, 24, 131060, 327680, 22, 196596, 327680, 23, 262132, 327680, 24, 131061, 393216, 22, 196597, 393216, 23, 262133, 393216, 24, 131062, 262144, 22, 196598, 262144, 23, 262134, 262144, 24, 131063, 327680, 22, 196599, 327680, 23, 262135, 327680, 24, 131064, 393216, 22, 196600, 393216, 23, 262136, 393216, 24, 131065, 262144, 22, 196601, 262144, 23, 262137, 262144, 24, 131066, 327680, 22, 196602, 327680, 23, 262138, 327680, 24, 131067, 393216, 22, 196603, 393216, 23, 262139, 393216, 24, 131068, 262144, 22, 196604, 262144, 23, 262140, 262144, 24, 131069, 327680, 22, 196605, 327680, 23, 262141, 327680, 24, 131070, 393216, 22, 196606, 393216, 23, 262142, 393216, 24, 131071, 262144, 22, 196607, 262144, 23, 262143, 262144, 24, 65536, 327680, 22, 131072, 327680, 23, 196608, 327680, 24, 65537, 393216, 22, 131073, 393216, 23, 196609, 393216, 24, 65538, 262144, 22, 131074, 262144, 23, 196610, 262144, 24, 65539, 327680, 22, 131075, 327680, 23, 196611, 327680, 24, 65540, 393216, 22, 131076, 393216, 23, 196612, 393216, 24, 65541, 262144, 22, 131077, 262144, 23, 196613, 262144, 24, 65542, 327680, 22, 131078, 327680, 23, 196614, 327680, 24, 65543, 393216, 22, 131079, 393216, 23, 196615, 393216, 24, 65544, 262144, 22, 131080, 262144, 23, 196616, 262144, 24, 65545, 327680, 22, 131081, 327680, 23, 196617, 327680, 24, 65546, 393216, 22, 131082, 393216, 23, 196618, 393216, 24, 65547, 262144, 22, 131083, 262144, 23, 196619, 262144, 24, 65548, 327680, 22, 131084, 327680, 23, 196620, 327680, 24, 65549, 393216, 22, 131085, 393216, 23, 196621, 393216, 24, 65550, 262144, 22, 131086, 262144, 23, 196622, 262144, 24, 65551, 327680, 22, 131087, 327680, 23, 196623, 327680, 24, 65552, 393216, 22, 131088, 393216, 23, 196624, 393216, 24, 65553, 262144, 22, 131089, 262144, 23, 196625, 262144, 24, 65554, 327680, 22, 131090, 327680, 23, 196626, 327680, 24, 65555, 393216, 22, 131091, 393216, 23, 196627, 393216, 24, 65556, 262144, 22, 131092, 262144, 23, 196628, 262144, 24, 65557, 327680, 22, 131093, 327680, 23, 196629, 327680, 24, 65558, 393216, 22, 131094, 393216, 23, 196630, 393216, 24, 65559, 262144, 22, 131095, 262144, 23, 196631, 262144, 24, 65560, 327680, 22, 131096, 327680, 23, 196632, 327680, 24, 65561, 393216, 22, 131097, 393216, 23, 196633, 393216, 24, 65562, 262144, 22, 131098, 262144, 23, 196634, 262144, 24, 65563, 327680, 22, 131099, 327680, 23, 196635, 327680, 24, 65564, 393216, 22, 131100, 393216, 23, 196636, 393216, 24, 65565, 262144, 22, 131101, 262144, 23, 196637, 262144, 24, 65566, 327680, 22, 131102, 327680, 23, 196638, 327680, 24, 65567, 393216, 22, 131103, 393216, 23, 196639, 393216, 24, 65568, 262144, 22, 131104, 262144, 23, 196640, 262144, 24, 65569, 327680, 22, 131105, 327680, 23, 196641, 327680, 24, 65570, 393216, 22, 131106, 393216, 23, 196642, 393216, 24, 65571, 262144, 22, 131107, 262144, 23, 196643, 262144, 24, 65572, 327680, 22, 131108, 327680, 23, 196644, 327680, 24, 65573, 393216, 22, 131109, 393216, 23, 196645, 393216, 24, 65574, 262144, 22, 131110, 262144, 23, 196646, 262144, 24, 65575, 327680, 22, 131111, 327680, 23, 196647, 327680, 24, 65576, 393216, 22, 131112, 393216, 23, 196648, 393216, 24)
 
-[node name="CharacterBody2D2" parent="." instance=ExtResource("7_5vw27")]
+[node name="MainCharacter" parent="." instance=ExtResource("7_5vw27")]
 position = Vector2(157, 269)
 scale = Vector2(2, 2)
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D2"]
+[node name="Camera2D" type="Camera2D" parent="MainCharacter"]
+position = Vector2(55, -72.5)
 position_smoothing_enabled = true
+
+[node name="MemoryNode" parent="." instance=ExtResource("7_272bh")]
+position = Vector2(304, 294)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://defgf7kvif5gk"]
+[gd_scene load_steps=11 format=3 uid="uid://defgf7kvif5gk"]
 
 [ext_resource type="Texture2D" uid="uid://cx4kjvu7dg6x0" path="res://background 1.png" id="1_7mycd"]
 [ext_resource type="Texture2D" uid="uid://c8fuqnwvdhb8a" path="res://background 2.png" id="2_272bh"]
@@ -6,7 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bdpln4w6mqrqj" path="res://background 4.png" id="4_kek77"]
 [ext_resource type="Texture2D" uid="uid://brakrkq6pjgqc" path="res://mainlevbuildA.png" id="5_4c57u"]
 [ext_resource type="PackedScene" uid="uid://dme1w4pih0y1m" path="res://scenes/character_body_2d_2.tscn" id="7_5vw27"]
-[ext_resource type="PackedScene" uid="uid://cyvwmwq3fg6xy" path="res://scenes/memory_node.tscn" id="7_272bh"]
+[ext_resource type="PackedScene" path="res://scenes/memory_node.tscn" id="7_272bh"]
+[ext_resource type="PackedScene" uid="uid://26fgixcbvlnd" path="res://enemy.tscn" id="8_5vw27"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7mycd"]
 texture = ExtResource("5_4c57u")
@@ -1180,3 +1181,6 @@ position_smoothing_enabled = true
 
 [node name="MemoryNode" parent="." instance=ExtResource("7_272bh")]
 position = Vector2(304, 294)
+
+[node name="Enemy" parent="." instance=ExtResource("8_5vw27")]
+position = Vector2(657, 249)

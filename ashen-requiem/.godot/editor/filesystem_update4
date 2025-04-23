@@ -1,9 +1,3 @@
-res://main.tscn
-res://main_character.tscn
-res://scenes/character_body_2d_2.tscn
 res://scenes/character_body_2d_2.gd
-res://scenes/intro_dialogue.tscn
-res://scenes/intro_dialogue.gd
-res://scenes/memory_node.tscn
-res://main_menu.tscn
-res://button_menu.tres
+res://main.tscn
+res://scenes/character_body_2d_2.tscn

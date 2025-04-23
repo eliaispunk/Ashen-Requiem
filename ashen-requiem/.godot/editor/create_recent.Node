@@ -1,3 +1,8 @@
+Button
+TextureRect
+Label
+ColorRect
+Control
 AnimatedSprite2D
 Camera2D
 CollisionShape2D
@@ -7,4 +12,3 @@ ParallaxBackground
 Node
 TileMap
 ParallaxLayer
-TextureRect

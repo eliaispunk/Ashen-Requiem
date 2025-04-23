@@ -7,3 +7,6 @@ res://scenes/intro_dialogue.gd
 res://scenes/memory_node.tscn
 res://main_menu.tscn
 res://button_menu.tres
+res://enemy.tscn
+res://enemy.gd
+res://fall_area.gd

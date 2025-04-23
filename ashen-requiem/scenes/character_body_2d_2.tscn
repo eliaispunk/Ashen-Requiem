@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://dme1w4pih0y1m"]
+[gd_scene load_steps=49 format=3 uid="uid://dme1w4pih0y1m"]
 
 [ext_resource type="Texture2D" uid="uid://mwjnjgajmfuo" path="res://attack.png" id="2_bhr3b"]
 [ext_resource type="Texture2D" uid="uid://o7fe2jkj24sd" path="res://idle.png" id="3_gr2ii"]
@@ -304,6 +304,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hatri"]
 size = Vector2(18, 39.6667)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gr2ii"]
+size = Vector2(32.6667, 39.3333)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qeo7v"]
+size = Vector2(20.6667, 40.6667)
+
 [node name="CharacterBody2D2" type="CharacterBody2D"]
 scale = Vector2(1.5, 1.5)
 script = ExtResource("5_bhr3b")
@@ -320,5 +326,22 @@ frame_progress = 1.0
 position = Vector2(-4.33333, -3.5)
 shape = SubResource("RectangleShape2D_hatri")
 
+[node name="AttackArea" type="Area2D" parent="."]
+visible = false
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(21, -3.66667)
+shape = SubResource("RectangleShape2D_gr2ii")
+
+[node name="ContactArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactArea"]
+position = Vector2(-4.33333, -4.33333)
+shape = SubResource("RectangleShape2D_qeo7v")
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_Sprite2D_animation_finished"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="AnimatedSprite2D" method="_on_Sprite2D_animation_finished"]
+[connection signal="body_entered" from="AttackArea" to="." method="_on_AttackArea_body_entered"]
+[connection signal="body_entered" from="ContactArea" to="." method="_on_ContactArea_body_entered"]

@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://26fgixcbvlnd"]
+[gd_scene load_steps=12 format=3 uid="uid://7u0j8o6pivyc"]
 
+[ext_resource type="Script" uid="uid://ce5o6rw7gf3ti" path="res://enemy.gd" id="1_4gyqm"]
 [ext_resource type="Texture2D" uid="uid://c87xbbpyhurnw" path="res://enemy_idle.png" id="1_7k104"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4gyqm"]
@@ -63,13 +64,15 @@ animations = [{
 size = Vector2(40, 56)
 
 [node name="Enemy" type="RigidBody2D"]
+script = ExtResource("1_4gyqm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(30.5, 24.5)
 scale = Vector2(1.63542, 1.58333)
 sprite_frames = SubResource("SpriteFrames_e1ltt")
-frame_progress = 0.554398
+frame = 4
+frame_progress = 0.604677
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(29, 27)

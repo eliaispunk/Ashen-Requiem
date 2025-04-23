@@ -1,10 +1,10 @@
 AnimatedSprite2D
 Camera2D
-ParallaxBackground
-Node
 CollisionShape2D
 Sprite2D
 CharacterBody2D
+ParallaxBackground
+Node
 TileMap
 ParallaxLayer
 TextureRect

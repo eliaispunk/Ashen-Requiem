@@ -1,3 +1,4 @@
+AudioStreamPlayer
 CollisionShape2D
 Area2D
 TileMap
@@ -11,4 +12,3 @@ Control
 AnimatedSprite2D
 Camera2D
 CharacterBody2D
-ParallaxBackground

@@ -3,14 +3,12 @@ extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -550.0
 const GRAVITY = 1200.0
-const KNOCKBACK_DURATION := 0.2
-const KNOCKBACK_FORCE := 200
 
 @onready var sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var collision_area: CollisionShape2D = $CollisionArea
 
 var is_attacking: bool = false
-var knockback_velocity := Vector2.ZERO
-var knockback_timer := 0.0
+var facing_left := false
 
 func _physics_process(delta: float) -> void:
 	# Add gravity
@@ -20,13 +18,6 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.y += GRAVITY * delta
 
-	# Check for knockback collisions
-	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-		var collider = collision.get_collider()
-		if collider and collider.is_in_group("enemies") and knockback_timer <= 0:
-			apply_knockback(collider.global_position)
-
 	# Handle attack input
 	if Input.is_action_just_pressed("attack") and is_on_floor() and not is_attacking:
 		is_attacking = true
@@ -35,10 +26,6 @@ func _physics_process(delta: float) -> void:
 		velocity.x = 0
 		return
 
-	# Handle knockback movement
-	if knockback_timer > 0:
-		knockback_timer -= delta
-		velocity.x = knockback_velocity.x
 	else:
 		# Handle movement and input normally if not attacking
 		if not is_attacking:
@@ -48,7 +35,15 @@ func _physics_process(delta: float) -> void:
 			var direction := Input.get_axis("left", "right")
 			if direction:
 				velocity.x = direction * SPEED
-				sprite_2d.flip_h = direction < 0
+
+				# Check if we need to flip
+				var now_facing_left = direction < 0
+				if now_facing_left != facing_left:
+					facing_left = now_facing_left
+					sprite_2d.flip_h = facing_left
+					$AttackArea.position.x = -43.0 if facing_left else 0.0
+					$CollisionArea.position.x = 3.0 if facing_left else -4.333
+
 			else:
 				velocity.x = move_toward(velocity.x, 0, SPEED)
 
@@ -85,13 +80,3 @@ func _on_Sprite2D_animation_finished():
 func _on_AttackArea_body_entered(body):
 	if is_attacking and body.is_in_group("enemies") and body.has_method("take_damage"):
 		body.take_damage(1)
-
-# Apply knockback away from the enemy
-func apply_knockback(enemy_position: Vector2):
-	var direction := (global_position - enemy_position).normalized()
-	knockback_velocity = direction * KNOCKBACK_FORCE
-	knockback_timer = KNOCKBACK_DURATION
-
-func _on_ContactArea_body_entered(body):
-	if body.is_in_group("enemies") and knockback_timer <= 0:
-		apply_knockback(body.global_position)

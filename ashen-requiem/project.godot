@@ -15,6 +15,10 @@ run/main_scene="uid://defgf7kvif5gk"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+BackgroundMusic="*res://BackgroundMusic.tscn"
+
 [input]
 
 left={

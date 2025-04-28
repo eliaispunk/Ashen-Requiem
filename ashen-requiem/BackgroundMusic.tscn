@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddn841gp7gjns"]
+
+[ext_resource type="AudioStream" uid="uid://djvmn4n20ll8b" path="res://soft-piano-100-bpm-121529.mp3" id="1_syabp"]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer"]
+stream = ExtResource("1_syabp")
+autoplay = true
+parameters/looping = true

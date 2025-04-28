@@ -314,10 +314,9 @@ script = ExtResource("5_bhr3b")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_sxjx5")
-animation = &"attacking"
+animation = &"running"
 autoplay = "default"
-frame = 13
-frame_progress = 1.0
+frame_progress = 0.363756
 
 [node name="CollisionArea" type="CollisionShape2D" parent="."]
 position = Vector2(-4.33333, -3.5)

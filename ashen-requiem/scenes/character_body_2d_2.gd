@@ -10,6 +10,9 @@ const GRAVITY = 1200.0
 var is_attacking: bool = false
 var facing_left := false
 
+func _ready():
+	add_to_group("players") # <-- ✨ Important!
+
 func _physics_process(delta: float) -> void:
 	# Add gravity
 	if not is_on_floor():

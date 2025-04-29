@@ -1,6 +1,9 @@
-AudioStreamPlayer
+Timer
+RayCast2D
 CollisionShape2D
 Area2D
+CharacterBody2D
+AudioStreamPlayer
 TileMap
 Label
 TextureButton
@@ -9,6 +12,3 @@ Sprite2D
 TextureRect
 ColorRect
 Control
-AnimatedSprite2D
-Camera2D
-CharacterBody2D

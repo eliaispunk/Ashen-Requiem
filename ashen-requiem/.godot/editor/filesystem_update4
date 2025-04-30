@@ -1,6 +1,3 @@
+res://enemy.tscn
 res://main.tscn
 res://scenes/character_body_2d_2.tscn
-res://enemy.tscn
-res://BackgroundMusic.tscn
-res://enemy.gd
-res://scenes/character_body_2d_2.gd

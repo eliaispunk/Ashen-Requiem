@@ -1,19 +1,21 @@
-[gd_scene load_steps=19 format=3 uid="uid://defgf7kvif5gk"]
+[gd_scene load_steps=21 format=3 uid="uid://defgf7kvif5gk"]
 
-[ext_resource type="Texture2D" uid="uid://cx4kjvu7dg6x0" path="res://background 1.png" id="1_7mycd"]
-[ext_resource type="Texture2D" uid="uid://c8fuqnwvdhb8a" path="res://background 2.png" id="2_272bh"]
-[ext_resource type="Texture2D" uid="uid://bhcjvaw0aw1ma" path="res://background 3.png" id="3_5vw27"]
-[ext_resource type="Texture2D" uid="uid://bdpln4w6mqrqj" path="res://background 4.png" id="4_kek77"]
-[ext_resource type="Texture2D" uid="uid://brakrkq6pjgqc" path="res://mainlevbuildA.png" id="5_4c57u"]
-[ext_resource type="Texture2D" uid="uid://dlpw1dm4sqevb" path="res://mainlevbuildB.png" id="6_kek77"]
-[ext_resource type="PackedScene" uid="uid://dme1w4pih0y1m" path="res://scenes/character_body_2d_2.tscn" id="7_5vw27"]
-[ext_resource type="PackedScene" uid="uid://cyvwmwq3fg6xy" path="res://scenes/memory_node.tscn" id="7_272bh"]
-[ext_resource type="Texture2D" uid="uid://drqe404rud2eh" path="res://decorative.png" id="9_4c57u"]
-[ext_resource type="PackedScene" uid="uid://7u0j8o6pivyc" path="res://enemy.tscn" id="10_4c57u"]
-[ext_resource type="Script" uid="uid://yh8jwdlerw2q" path="res://fall_area.gd" id="11_efxa6"]
+[ext_resource type="Script" uid="uid://bia7uba7c4yu5" path="res://scenes/Level.gd" id="1_trceg"]
+[ext_resource type="Texture2D" uid="uid://cx4kjvu7dg6x0" path="res://background 1.png" id="1_ya4ey"]
+[ext_resource type="Texture2D" uid="uid://c8fuqnwvdhb8a" path="res://background 2.png" id="2_eb6dy"]
+[ext_resource type="Texture2D" uid="uid://bhcjvaw0aw1ma" path="res://background 3.png" id="3_trceg"]
+[ext_resource type="Texture2D" uid="uid://bdpln4w6mqrqj" path="res://background 4.png" id="4_a8y0u"]
+[ext_resource type="Texture2D" uid="uid://brakrkq6pjgqc" path="res://mainlevbuildA.png" id="5_jkv2x"]
+[ext_resource type="Texture2D" uid="uid://dlpw1dm4sqevb" path="res://mainlevbuildB.png" id="6_jbj1t"]
+[ext_resource type="PackedScene" uid="uid://dme1w4pih0y1m" path="res://scenes/character_body_2d_2.tscn" id="7_muem4"]
+[ext_resource type="PackedScene" uid="uid://cyvwmwq3fg6xy" path="res://scenes/memory_node.tscn" id="8_dp3eg"]
+[ext_resource type="Texture2D" uid="uid://drqe404rud2eh" path="res://decorative.png" id="9_0ld40"]
+[ext_resource type="PackedScene" uid="uid://7u0j8o6pivyc" path="res://enemy.tscn" id="10_gqmmt"]
+[ext_resource type="Script" uid="uid://yh8jwdlerw2q" path="res://fall_area.gd" id="11_yc10j"]
+[ext_resource type="Script" uid="uid://dvvq5xo4ejugo" path="res://scenes/fader.gd" id="12_eb6dy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7mycd"]
-texture = ExtResource("5_4c57u")
+texture = ExtResource("5_jkv2x")
 32:0/0 = 0
 34:0/0 = 0
 35:0/0 = 0
@@ -1119,7 +1121,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_7mycd")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_efxa6"]
-texture = ExtResource("6_kek77")
+texture = ExtResource("6_jbj1t")
 31:1/0 = 0
 34:1/0 = 0
 35:1/0 = 0
@@ -2979,7 +2981,7 @@ texture = ExtResource("6_kek77")
 sources/0 = SubResource("TileSetAtlasSource_efxa6")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ycdy4"]
-texture = ExtResource("9_4c57u")
+texture = ExtResource("9_0ld40")
 9:1/0 = 0
 10:1/0 = 0
 11:1/0 = 0
@@ -4678,6 +4680,7 @@ sources/0 = SubResource("TileSetAtlasSource_ycdy4")
 size = Vector2(3841, 7)
 
 [node name="Node" type="Node"]
+script = ExtResource("1_trceg")
 
 [node name="ParallaxBackground" type="Node2D" parent="."]
 position = Vector2(426, 239)
@@ -4692,7 +4695,7 @@ repeat_times = 3
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/SkyLayer"]
 texture_filter = 1
 position = Vector2(-1, -113)
-texture = ExtResource("1_7mycd")
+texture = ExtResource("1_ya4ey")
 
 [node name="Background1" type="Parallax2D" parent="ParallaxBackground"]
 texture_repeat = 2
@@ -4702,7 +4705,7 @@ repeat_size = Vector2(848, 0)
 repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Background1"]
-texture = ExtResource("2_272bh")
+texture = ExtResource("2_eb6dy")
 
 [node name="Background2" type="Parallax2D" parent="ParallaxBackground"]
 texture_repeat = 2
@@ -4712,7 +4715,7 @@ repeat_size = Vector2(848, 0)
 repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Background2"]
-texture = ExtResource("3_5vw27")
+texture = ExtResource("3_trceg")
 
 [node name="Background3" type="Parallax2D" parent="ParallaxBackground"]
 texture_repeat = 2
@@ -4723,7 +4726,7 @@ repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Background3"]
 position = Vector2(0, 117)
-texture = ExtResource("4_kek77")
+texture = ExtResource("4_a8y0u")
 
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1
@@ -4737,7 +4740,7 @@ layer_0/tile_data = PackedInt32Array(131056, 262144, 22, 196592, 262144, 23, 262
 tile_set = SubResource("TileSet_dg77c")
 format = 2
 
-[node name="MainCharacter" parent="." instance=ExtResource("7_5vw27")]
+[node name="MainCharacter" parent="." instance=ExtResource("7_muem4")]
 position = Vector2(157, 269)
 scale = Vector2(2, 2)
 
@@ -4745,23 +4748,34 @@ scale = Vector2(2, 2)
 position = Vector2(55, -72.5)
 position_smoothing_enabled = true
 
-[node name="MemoryNode" parent="." instance=ExtResource("7_272bh")]
+[node name="MemoryNode" parent="." instance=ExtResource("8_dp3eg")]
 position = Vector2(304, 294)
 
 [node name="TileMap3" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_w48qg")
 format = 2
 
-[node name="Enemy" parent="." instance=ExtResource("10_4c57u")]
+[node name="Enemy" parent="." instance=ExtResource("10_gqmmt")]
 position = Vector2(707, 215)
 
 [node name="FallArea" type="Area2D" parent="."]
 position = Vector2(573, 436)
-script = ExtResource("11_efxa6")
+script = ExtResource("11_yc10j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FallArea"]
 position = Vector2(367.5, -16.5)
 shape = SubResource("RectangleShape2D_dg77c")
 
-[connection signal="body_entered" from="FallArea" to="MainCharacter" method="_on_FallArea_body_entered"]
-[connection signal="body_entered" from="FallArea" to="FallArea" method="_on_body_entered"]
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Fader" type="ColorRect" parent="UI"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("12_eb6dy")
+
+[connection signal="body_entered" from="FallArea" to="FallArea" method="_on_FallArea_body_entered"]

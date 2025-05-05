@@ -1,7 +1,9 @@
+ColorRect
+CanvasLayer
+Area2D
 Timer
 RayCast2D
 CollisionShape2D
-Area2D
 CharacterBody2D
 AudioStreamPlayer
 TileMap
@@ -10,5 +12,3 @@ TextureButton
 Button
 Sprite2D
 TextureRect
-ColorRect
-Control

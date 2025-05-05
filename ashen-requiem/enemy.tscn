@@ -298,7 +298,7 @@ animations = [{
 size = Vector2(40, 56)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3yqyl"]
-size = Vector2(30, 56)
+size = Vector2(98, 56)
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_4gyqm")
@@ -308,7 +308,9 @@ texture_filter = 1
 position = Vector2(30.5, 24.5)
 scale = Vector2(1.63542, 1.58333)
 sprite_frames = SubResource("SpriteFrames_e1ltt")
-animation = &"death"
+animation = &"hurt"
+frame = 3
+frame_progress = 1.0
 
 [node name="CollisionArea" type="CollisionShape2D" parent="."]
 position = Vector2(29, 27)
@@ -317,12 +319,10 @@ shape = SubResource("RectangleShape2D_dxifv")
 [node name="AttackArea" type="Area2D" parent="."]
 
 [node name="AttackArea" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(64, 27)
+position = Vector2(30, 27)
 shape = SubResource("RectangleShape2D_3yqyl")
 debug_color = Color(0.896603, 0.247967, 0.506264, 0.42)
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(10, 0)
-hit_from_inside = true
-
 [node name="AttackCooldownTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="AttackArea" to="." method="_on_AttackArea_body_entered"]

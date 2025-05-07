@@ -1,9 +1,7 @@
-res://main.tscn
+res://scenes/main.tscn
 res://enemy.tscn
 res://scenes/character_body_2d_2.tscn
-res://fall_area.gd
-res://scenes/main.tscn
-res://enemy.gd
-res://scenes/character_body_2d_2.gd
 res://scenes/fader.gd
 res://scenes/Level.gd
+res://enemy.gd
+res://scenes/character_body_2d_2.gd

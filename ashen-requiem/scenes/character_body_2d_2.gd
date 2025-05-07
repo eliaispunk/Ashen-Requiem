@@ -11,7 +11,6 @@ const GRAVITY      = 1200.0
 var health: int        = 5
 var is_hurt: bool      = false
 var is_dead: bool      = false
-var invulnerable_time := 0.5  # seconds of “i-frames” after getting hit
 
 # ─── EXISTING STATE ─────────────────────────────────────────────────
 var is_attacking: bool = false
@@ -79,7 +78,6 @@ func take_damage(amount: int) -> void:
 		is_attacking = false
 		$AttackArea.monitoring = false
 		sprite_2d.play("hurt")
-		await get_tree().create_timer(invulnerable_time).timeout
 		_on_hurt_recover()
 	else:
 		die()
@@ -108,28 +106,24 @@ func die() -> void:
 	$AttackArea.monitoring = false
 	collision_area.disabled = true
 	sprite_2d.play("death")
-
 	await sprite_2d.animation_finished
+	sprite_2d.stop()  # Freeze on last frame
 	print("EMITTING DEATH SIGNAL")
 	emit_signal("died")
 
 # ─── EXISTING ANIMATION-FINISHED HANDLER ──────────────────────────────────
 func _on_Sprite2D_animation_finished():
-	if is_dead:
-		return  # Do nothing after death animation ends
+	if sprite_2d.animation == "death":
+		return  # Never override death frame
 
-	match sprite_2d.animation:
-		"attacking":
-			is_attacking = false
-			$AttackArea.monitoring = false
+	# Only reset attack state if finishing "attacking"
+	if sprite_2d.animation == "attacking":
+		is_attacking = false
+		$AttackArea.monitoring = false
 
-	if not is_hurt:
-		if not is_on_floor():
-			sprite_2d.play("jumping" if velocity.y < 0 else "falling")
-		elif Input.get_axis("left", "right") != 0:
-			sprite_2d.play("running")
-		else:
-			sprite_2d.play("default")
+	# Don't override animation if still hurt
+	if is_hurt:
+		return
 
 # ─── YOUR EXISTING ENEMY-COLLISION HOOK ──────────────────────────────────
 func _on_AttackArea_body_entered(body):

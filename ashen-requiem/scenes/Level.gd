@@ -5,8 +5,9 @@ func _ready():
 	player.died.connect(_on_Player_died)
 
 func _on_Player_died():
-	print("Fading to black...")
+	print("Fading to black and showing Game Over menu...")
 	var fader = get_node("UI/Fader")
+	var game_over_menu = get_node("UI/GameOverMenu")
+	
 	await fader.fade_out()
-	get_tree().reload_current_scene()
-	await fader.fade_in()
+	game_over_menu.visible = true

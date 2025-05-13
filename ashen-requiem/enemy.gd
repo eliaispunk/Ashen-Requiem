@@ -8,7 +8,6 @@ const DETECTION_RANGE = 200.0
 @onready var sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_area: Area2D = $AttackArea
 @onready var collision_area: CollisionShape2D = $CollisionArea
-@onready var raycast: RayCast2D = $RayCast2D
 @onready var attack_cooldown_timer: Timer = $AttackCooldownTimer
 
 var target = null
@@ -34,8 +33,6 @@ func _ready():
 	attack_cooldown_timer.one_shot = true
 	attack_cooldown_timer.wait_time = 1
 	attack_cooldown_timer.timeout.connect(_on_AttackCooldownTimer_timeout)
-	
-	attack_area.body_entered.connect(_on_AttackArea_body_entered)
 
 func _physics_process(delta: float) -> void:
 	if is_dead:

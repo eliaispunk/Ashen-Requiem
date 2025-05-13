@@ -1,7 +1,11 @@
 res://scenes/main.tscn
 res://enemy.tscn
 res://scenes/character_body_2d_2.tscn
-res://scenes/fader.gd
+res://fall_area.gd
 res://scenes/Level.gd
+res://scenes/GameOverMenu.gd
+res://scenes/OptionsMenu.gd
+res://scenes/UI.gd
+res://main_character.gd
 res://enemy.gd
 res://scenes/character_body_2d_2.gd

@@ -18,7 +18,6 @@ var facing_left := false
 
 func _ready():
 	add_to_group("players")
-	sprite_2d.animation_finished.connect(_on_Sprite2D_animation_finished)
 
 func _physics_process(delta: float) -> void:
 	if is_dead:

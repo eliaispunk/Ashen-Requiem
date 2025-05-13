@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://defgf7kvif5gk"]
+[gd_scene load_steps=25 format=3 uid="uid://defgf7kvif5gk"]
 
 [ext_resource type="Script" uid="uid://bia7uba7c4yu5" path="res://scenes/Level.gd" id="1_trceg"]
 [ext_resource type="Texture2D" uid="uid://cx4kjvu7dg6x0" path="res://background 1.png" id="1_ya4ey"]
@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://7u0j8o6pivyc" path="res://enemy.tscn" id="10_gqmmt"]
 [ext_resource type="Script" uid="uid://yh8jwdlerw2q" path="res://fall_area.gd" id="11_yc10j"]
 [ext_resource type="Script" uid="uid://dvvq5xo4ejugo" path="res://scenes/fader.gd" id="12_eb6dy"]
-[ext_resource type="Script" uid="uid://dgu0bpr46c64y" path="res://scenes/UI.gd" id="13_muem4"]
 [ext_resource type="Script" uid="uid://csrxwuwl5yb2q" path="res://scenes/GameOverMenu.gd" id="14_a8y0u"]
 [ext_resource type="FontFile" uid="uid://dg6iivcilg3ml" path="res://alagard.ttf" id="15_jkv2x"]
 [ext_resource type="Script" uid="uid://tl7oo32k1ebh" path="res://scenes/OptionsMenu.gd" id="16_jbj1t"]
@@ -4773,8 +4772,6 @@ position = Vector2(367.5, -16.5)
 shape = SubResource("RectangleShape2D_dg77c")
 
 [node name="UI" type="CanvasLayer" parent="."]
-process_mode = 3
-script = ExtResource("13_muem4")
 
 [node name="Fader" type="ColorRect" parent="UI"]
 modulate = Color(1, 1, 1, 0)
@@ -4787,7 +4784,6 @@ color = Color(0, 0, 0, 1)
 script = ExtResource("12_eb6dy")
 
 [node name="GameOverMenu" type="Control" parent="UI"]
-process_mode = 3
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -4857,7 +4853,6 @@ theme_override_font_sizes/font_size = 60
 text = "Quit Game"
 
 [node name="OptionsMenu" type="Control" parent="UI"]
-process_mode = 3
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -4904,15 +4899,14 @@ theme_override_font_sizes/font_size = 60
 text = "Volume"
 horizontal_alignment = 1
 
-[node name="MasterVolumeSlider" type="HSlider" parent="UI/OptionsMenu/Panel/VBoxContainer"]
+[node name="HSlider" type="HSlider" parent="UI/OptionsMenu/Panel/VBoxContainer"]
 layout_mode = 2
 
-[node name="FullscreenCheckBox" type="CheckBox" parent="UI/OptionsMenu/Panel/VBoxContainer"]
+[node name="CheckBox" type="CheckBox" parent="UI/OptionsMenu/Panel/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("15_jkv2x")
 theme_override_font_sizes/font_size = 60
 text = "Fullscreen"
-alignment = 1
 
 [node name="Resolution" type="Label" parent="UI/OptionsMenu/Panel/VBoxContainer"]
 layout_mode = 2
@@ -4921,19 +4915,13 @@ theme_override_font_sizes/font_size = 60
 text = "Resolution"
 horizontal_alignment = 1
 
-[node name="ResolutionOptionButton" type="OptionButton" parent="UI/OptionsMenu/Panel/VBoxContainer"]
+[node name="OptionButton" type="OptionButton" parent="UI/OptionsMenu/Panel/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("15_jkv2x")
-theme_override_font_sizes/font_size = 40
-alignment = 1
+theme_override_font_sizes/font_size = 60
 selected = 0
-item_count = 3
-popup/item_0/text = "1280 x 720"
+item_count = 1
 popup/item_0/id = 0
-popup/item_1/text = "1600 x 900"
-popup/item_1/id = 1
-popup/item_2/text = "1920 x 1080"
-popup/item_2/id = 2
 
 [node name="SaveButton" type="Button" parent="UI/OptionsMenu/Panel/VBoxContainer"]
 layout_mode = 2
@@ -4951,8 +4939,3 @@ text = "Back"
 [connection signal="pressed" from="UI/GameOverMenu/Panel/VBoxContainer/RestartButton" to="UI/GameOverMenu" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="UI/GameOverMenu/Panel/VBoxContainer/OptionsButton" to="UI/GameOverMenu" method="_on_options_button_pressed"]
 [connection signal="pressed" from="UI/GameOverMenu/Panel/VBoxContainer/ExitButton" to="UI/GameOverMenu" method="_on_exit_button_pressed"]
-[connection signal="value_changed" from="UI/OptionsMenu/Panel/VBoxContainer/MasterVolumeSlider" to="UI/OptionsMenu" method="_on_MasterVolumeSlider_value_changed"]
-[connection signal="toggled" from="UI/OptionsMenu/Panel/VBoxContainer/FullscreenCheckBox" to="UI/OptionsMenu" method="_on_FullscreenCheckbox_toggled"]
-[connection signal="item_selected" from="UI/OptionsMenu/Panel/VBoxContainer/ResolutionOptionButton" to="UI/OptionsMenu" method="_on_ResolutionOptionButton_item_selected"]
-[connection signal="pressed" from="UI/OptionsMenu/Panel/VBoxContainer/SaveButton" to="UI/OptionsMenu" method="_on_SaveButton_pressed"]
-[connection signal="pressed" from="UI/OptionsMenu/Panel/VBoxContainer/BackButton" to="UI/OptionsMenu" method="_on_BackButton_pressed"]

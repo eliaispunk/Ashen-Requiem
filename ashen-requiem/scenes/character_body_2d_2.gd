@@ -8,7 +8,7 @@ const GRAVITY      = 1200.0
 @onready var collision_area: CollisionShape2D = $CollisionArea
 
 # ─── NEW STATE ───────────────────────────────────────────────────────────
-var health: int        = 5
+var health: int        = 4
 var is_hurt: bool      = false
 var is_dead: bool      = false
 
@@ -18,6 +18,7 @@ var facing_left := false
 
 func _ready():
 	add_to_group("players")
+	sprite_2d.animation_finished.connect(_on_Sprite2D_animation_finished)
 
 func _physics_process(delta: float) -> void:
 	if is_dead:

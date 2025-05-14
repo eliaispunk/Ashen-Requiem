@@ -7,18 +7,14 @@ const GRAVITY      = 1200.0
 @onready var sprite_2d: AnimatedSprite2D     = $AnimatedSprite2D
 @onready var collision_area: CollisionShape2D = $CollisionArea
 
-# ─── NEW STATE ───────────────────────────────────────────────────────────
 var health: int        = 4
 var is_hurt: bool      = false
 var is_dead: bool      = false
-
-# ─── EXISTING STATE ─────────────────────────────────────────────────
 var is_attacking: bool = false
 var facing_left := false
 
 func _ready():
 	add_to_group("players")
-	sprite_2d.animation_finished.connect(_on_Sprite2D_animation_finished)
 
 func _physics_process(delta: float) -> void:
 	if is_dead:
@@ -29,7 +25,6 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 
-	# ── gravity, movement & attack code as before ──
 	if not is_on_floor():
 		if velocity.y > 0:
 			velocity.y += GRAVITY * 1.3 * delta
@@ -78,6 +73,7 @@ func take_damage(amount: int) -> void:
 		is_attacking = false
 		$AttackArea.monitoring = false
 		sprite_2d.play("hurt")
+		await sprite_2d.animation_finished
 		_on_hurt_recover()
 	else:
 		die()
@@ -107,25 +103,22 @@ func die() -> void:
 	collision_area.disabled = true
 	sprite_2d.play("death")
 	await sprite_2d.animation_finished
-	sprite_2d.stop()  # Freeze on last frame
 	print("EMITTING DEATH SIGNAL")
 	emit_signal("died")
 
 # ─── EXISTING ANIMATION-FINISHED HANDLER ──────────────────────────────────
 func _on_Sprite2D_animation_finished():
 	if sprite_2d.animation == "death":
-		return  # Never override death frame
+		return
 
-	# Only reset attack state if finishing "attacking"
 	if sprite_2d.animation == "attacking":
 		is_attacking = false
 		$AttackArea.monitoring = false
 
-	# Don't override animation if still hurt
 	if is_hurt:
 		return
 
-# ─── YOUR EXISTING ENEMY-COLLISION HOOK ──────────────────────────────────
+# ─── EXISTING ENEMY-COLLISION HOOK ──────────────────────────────────
 func _on_AttackArea_body_entered(body):
 	if is_attacking and body.is_in_group("enemies") and body.has_method("take_damage"):
 		body.take_damage(1)

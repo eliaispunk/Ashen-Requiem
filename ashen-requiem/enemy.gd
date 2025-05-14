@@ -2,12 +2,14 @@ extends CharacterBody2D
 
 const SPEED = 100.0
 const GRAVITY = 1200.0
-const ATTACK_RANGE = 30.0
 const DETECTION_RANGE = 200.0
+const ATTACK_AREA_RIGHT = 35.5
+const ATTACK_AREA_LEFT = -35.0
 
 @onready var sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_area: Area2D = $AttackArea
-@onready var collision_area: CollisionShape2D = $CollisionArea
+@onready var attack_collider: CollisionShape2D = $AttackArea/AttackShape
+@onready var main_collider: CollisionShape2D = $CollisionArea
 @onready var attack_cooldown_timer: Timer = $AttackCooldownTimer
 
 var target = null
@@ -24,19 +26,15 @@ var movement_locked: bool = false
 var can_attack: bool = true
 
 func _ready():
-	attack_area.body_entered.connect(func(body):
-		print("!!! ANYTHING entered attack area:", body.name)
-	)
-
 	add_to_group("enemies")
-	
+	attack_area.monitoring = true  # Always on
 	attack_cooldown_timer.one_shot = true
 	attack_cooldown_timer.wait_time = 1
 	attack_cooldown_timer.timeout.connect(_on_AttackCooldownTimer_timeout)
 
 func _physics_process(delta: float) -> void:
 	if is_dead:
-		return  # <- If dead, do NOTHING anymore
+		return
 
 	if is_hurt:
 		move_and_slide()
@@ -49,59 +47,67 @@ func _physics_process(delta: float) -> void:
 		var players = get_tree().get_nodes_in_group("players")
 		if players.size() > 0:
 			target = players[0]
-			
+
 	if not target or not is_instance_valid(target) or target.is_dead:
 		idle()
+		move_and_slide()
 		return
-	
-	if target and is_instance_valid(target):
-		var distance = global_position.distance_to(target.global_position)
 
-		if movement_locked:
-			velocity = Vector2.ZERO
-		else:
-			if distance <= ATTACK_RANGE and can_attack and not is_attacking and not target.is_dead:
-				attack()
-			elif distance <= DETECTION_RANGE:
-				move_towards_player()
-			else:
-				idle()
+	face_player()
+
+	if movement_locked:
+		velocity = Vector2.ZERO
 	else:
-		idle()
+		if _is_player_in_attack_area() and can_attack and not is_attacking and not target.is_dead:
+			attack()
+		elif global_position.distance_to(target.global_position) <= DETECTION_RANGE:
+			move_towards_player()
+		else:
+			idle()
 
 	move_and_slide()
+
+func face_player():
+	if not target or not is_instance_valid(target):
+		return
+	var dir_to_player = target.global_position.x - global_position.x
+	var now_facing_left = dir_to_player < 0
+	if now_facing_left != facing_left:
+		facing_left = now_facing_left
+		sprite_2d.flip_h = facing_left
+		attack_area.position.x = ATTACK_AREA_LEFT if facing_left else ATTACK_AREA_RIGHT
 
 func move_towards_player():
 	if not target or not is_instance_valid(target):
 		return
 
+	face_player()
+
+	# if player in attack area but attack on cooldown → stop & idle
+	if _is_player_in_attack_area() and (not can_attack or is_attacking):
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		if not is_attacking and not is_hurt:
+			sprite_2d.play("default")
+		return
+
 	var direction = (target.global_position - global_position)
 	var distance = direction.length()
 
-	# Prevent jitter when too close
 	if distance < 2.0:
 		direction = Vector2.ZERO
 	else:
 		direction = direction.normalized()
 
-	# Only update x velocity if not frozen
 	velocity.x = direction.x * SPEED
 
-	# Flip only if we're moving significantly left or right
-	if abs(direction.x) > 0.1:
-		var now_facing_left = direction.x < 0
-		if now_facing_left != facing_left:
-			facing_left = now_facing_left
-			sprite_2d.flip_h = facing_left
+	if not is_attacking and not is_hurt:
+		sprite_2d.play("walk")
 
-	# Handle animations
-	if distance > ATTACK_RANGE:
-		if not is_attacking and not is_hurt and sprite_2d.animation != "walk":
-			sprite_2d.play("walk")
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		if not is_attacking and not is_hurt and sprite_2d.animation != "default":
-			sprite_2d.play("default")
+func _is_player_in_attack_area() -> bool:
+	for body in attack_area.get_overlapping_bodies():
+		if body.is_in_group("players") and not body.is_dead:
+			return true
+	return false
 
 func attack():
 	if not can_attack or is_attacking or is_hurt or attack_on_cooldown:
@@ -109,9 +115,6 @@ func attack():
 
 	can_attack = false
 	is_attacking = true
-	attack_area.monitoring = true
-	attack_area.force_update_transform() # Optional but useful
-	attack_area.monitoring = true
 	movement_locked = true
 	velocity.x = 0
 	sprite_2d.play("attack")
@@ -120,21 +123,29 @@ func attack():
 	_on_attack_finished()
 
 func _on_attack_finished():
+	if is_dead:
+		return
+
 	is_attacking = false
-	attack_area.monitoring = false
 	movement_locked = false
 	attack_on_cooldown = true
 	attack_cooldown_timer.start()
 
+	for body in attack_area.get_overlapping_bodies():
+		if body.is_in_group("players") and body.has_method("take_damage") and not body.is_dead:
+			body.take_damage(1)
+
 	if target and is_instance_valid(target):
-		var d = global_position.distance_to(target.global_position)
-		sprite_2d.play("walk" if d <= DETECTION_RANGE else "default")
+		if global_position.distance_to(target.global_position) <= DETECTION_RANGE:
+			sprite_2d.play("walk")
+		else:
+			sprite_2d.play("default")
 	else:
 		sprite_2d.play("default")
 
 func idle():
 	velocity.x = move_toward(velocity.x, 0, SPEED)
-	if not is_attacking and not is_hurt and sprite_2d.animation != "default":
+	if not is_attacking and not is_hurt:
 		sprite_2d.play("default")
 
 func take_damage(amount: int):
@@ -145,7 +156,6 @@ func take_damage(amount: int):
 	if health > 0:
 		is_hurt = true
 		is_attacking = false
-		attack_area.monitoring = false
 		movement_locked = false
 		can_attack = true
 		attack_on_cooldown = false
@@ -158,14 +168,16 @@ func take_damage(amount: int):
 		die()
 
 func _on_hurt_finished():
+	if is_dead:
+		return
+
 	is_hurt = false
 	movement_locked = false
 
 	if target and is_instance_valid(target):
-		var d = global_position.distance_to(target.global_position)
-		if d <= ATTACK_RANGE and not is_attacking and can_attack:
+		if _is_player_in_attack_area() and not is_attacking and can_attack:
 			attack()
-		elif d <= DETECTION_RANGE:
+		elif global_position.distance_to(target.global_position) <= DETECTION_RANGE:
 			sprite_2d.play("walk")
 		else:
 			sprite_2d.play("default")
@@ -176,11 +188,10 @@ func die():
 	is_dead = true
 	is_attacking = false
 	is_hurt = false
-	attack_area.monitoring = false
 	movement_locked = true
 
-	collision_area.disabled = true
-	$AttackArea/AttackArea.disabled = true
+	main_collider.disabled = true
+	attack_collider.disabled = true
 
 	set_collision_layer(0)
 	set_collision_mask(0)
@@ -194,7 +205,3 @@ func die():
 func _on_AttackCooldownTimer_timeout() -> void:
 	attack_on_cooldown = false
 	can_attack = true
-	
-func _on_AttackArea_body_entered(body):
-	if is_attacking and body.is_in_group("players") and body.has_method("take_damage") and not body.is_dead:
-		body.take_damage(1)

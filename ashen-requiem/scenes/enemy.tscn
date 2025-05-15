@@ -312,12 +312,10 @@ frame = 11
 frame_progress = 1.0
 
 [node name="CollisionArea" type="CollisionShape2D" parent="."]
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_dxifv")
 
 [node name="AttackArea" type="Area2D" parent="."]
 position = Vector2(3.8147e-06, 1.90735e-06)
-scale = Vector2(1, 1)
 
 [node name="AttackShape" type="CollisionShape2D" parent="AttackArea"]
 shape = SubResource("RectangleShape2D_3yqyl")

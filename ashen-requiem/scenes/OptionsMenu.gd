@@ -11,12 +11,12 @@ func _ready():
 	if err == OK:
 		# Load volume
 		var volume = config.get_value("audio", "master_volume", -40)
-		$Panel/VBoxContainer/MasterVolumeSlider.value = volume
+		$NinePatchRect/VBoxContainer/MasterVolumeSlider.value = volume
 		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), volume)
 
 		# Load fullscreen mode index
 		var mode_index = config.get_value("display", "fullscreen_mode_index", 0)
-		$Panel/VBoxContainer/FullscreenModeOptionButton.select(mode_index)
+		$NinePatchRect/VBoxContainer/FullscreenModeOptionButton.select(mode_index)
 		if mode_index == 1:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		else:
@@ -30,7 +30,7 @@ func _ready():
 		]
 		var res_index = config.get_value("display", "resolution_index", 1)
 		res_index = clamp(res_index, 0, resolutions.size() - 1)
-		$Panel/VBoxContainer/ResolutionOptionButton.select(res_index)
+		$NinePatchRect/VBoxContainer/ResolutionOptionButton.select(res_index)
 		DisplayServer.window_set_size(resolutions[res_index])
 
 		# Recenter window
@@ -72,8 +72,8 @@ func _on_BackButton_pressed():
 
 func save_settings():
 	var config = ConfigFile.new()
-	config.set_value("audio", "master_volume", $Panel/VBoxContainer/MasterVolumeSlider.value)
-	config.set_value("display", "fullscreen_mode_index", $Panel/VBoxContainer/FullscreenModeOptionButton.selected)
-	config.set_value("display", "resolution_index", $Panel/VBoxContainer/ResolutionOptionButton.selected)
+	config.set_value("audio", "master_volume", $NinePatchRect/VBoxContainer/MasterVolumeSlider.value)
+	config.set_value("display", "fullscreen_mode_index", $NinePatchRect/VBoxContainer/FullscreenModeOptionButton.selected)
+	config.set_value("display", "resolution_index", $NinePatchRect/VBoxContainer/ResolutionOptionButton.selected)
 	config.save("user://settings.cfg")
 	print("Settings auto-saved.")

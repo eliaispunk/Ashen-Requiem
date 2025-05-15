@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Ashen Requiem"
-run/main_scene="uid://defgf7kvif5gk"
+run/main_scene="uid://c4gtk4donm44u"
 config/features=PackedStringArray("4.4", "Mobile")
 
 [display]
@@ -20,6 +20,10 @@ window/size/viewport_width=1280
 window/size/viewport_height=700
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_width"
+
+[gui]
+
+theme/custom_font="uid://dg6iivcilg3ml"
 
 [input]
 

@@ -1,0 +1,43 @@
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://cwe4xop3am2ut"]
+
+[ext_resource type="FontFile" uid="uid://dg6iivcilg3ml" path="res://alagard.ttf" id="1_w4svv"]
+[ext_resource type="StyleBox" uid="uid://v0yts7py0rw2" path="res://scenes/button_hover.tres" id="2_4gw00"]
+[ext_resource type="StyleBox" uid="uid://c52gbs7y5j4nl" path="res://scenes/button_normal.tres" id="3_7gp8n"]
+[ext_resource type="Texture2D" uid="uid://4m4ahmkebk6" path="res://UI_Sprite.png" id="4_4gw00"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4gw00"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7gp8n"]
+atlas = ExtResource("4_4gw00")
+region = Rect2(146, 27, 26, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6lw8"]
+atlas = ExtResource("4_4gw00")
+region = Rect2(114, 28, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5pw2"]
+atlas = ExtResource("4_4gw00")
+region = Rect2(245, 247, 8.98, 5)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7gp8n"]
+
+[resource]
+Button/font_sizes/font_size = 60
+Button/fonts/font = ExtResource("1_w4svv")
+Button/styles/focus = SubResource("StyleBoxEmpty_4gw00")
+Button/styles/hover = ExtResource("2_4gw00")
+Button/styles/normal = ExtResource("3_7gp8n")
+Button/styles/pressed = ExtResource("2_4gw00")
+CheckBox/icons/checked = SubResource("AtlasTexture_7gp8n")
+CheckBox/icons/unchecked = SubResource("AtlasTexture_h6lw8")
+CheckBox/styles/hover = ExtResource("3_7gp8n")
+CheckBox/styles/hover_pressed = ExtResource("3_7gp8n")
+CheckBox/styles/normal = ExtResource("3_7gp8n")
+CheckBox/styles/pressed = ExtResource("3_7gp8n")
+CheckButton/styles/hover = ExtResource("3_7gp8n")
+CheckButton/styles/hover_pressed = ExtResource("3_7gp8n")
+CheckButton/styles/normal = ExtResource("3_7gp8n")
+CheckButton/styles/pressed = ExtResource("3_7gp8n")
+Label/styles/normal = ExtResource("3_7gp8n")
+OptionButton/icons/arrow = SubResource("AtlasTexture_f5pw2")
+OptionButton/styles/focus = SubResource("StyleBoxEmpty_7gp8n")

@@ -15,7 +15,6 @@
 [ext_resource type="Script" uid="uid://dgu0bpr46c64y" path="res://scenes/UI.gd" id="13_muem4"]
 [ext_resource type="PackedScene" uid="uid://di75nnsxbxkff" path="res://game_over_menu.tscn" id="14_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://b6m3iaec36uci" path="res://scenes/options_menu.tscn" id="16_muem4"]
-[ext_resource type="PackedScene" uid="uid://c4gtk4donm44u" path="res://scenes/menu.tscn" id="17_muem4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7mycd"]
 texture = ExtResource("5_jkv2x")
@@ -4682,6 +4681,9 @@ sources/0 = SubResource("TileSetAtlasSource_ycdy4")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dg77c"]
 size = Vector2(3841, 7)
 
+[sub_resource type="Environment" id="Environment_jbj1t"]
+background_mode = 1
+
 [node name="Node" type="Node"]
 script = ExtResource("1_trceg")
 
@@ -4784,7 +4786,7 @@ script = ExtResource("12_eb6dy")
 
 [node name="OptionsMenu" parent="UI" instance=ExtResource("16_muem4")]
 
-[node name="Menu" parent="." instance=ExtResource("17_muem4")]
-visible = false
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jbj1t")
 
 [connection signal="body_entered" from="FallArea" to="FallArea" method="_on_FallArea_body_entered"]

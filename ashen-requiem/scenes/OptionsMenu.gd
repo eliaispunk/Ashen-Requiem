@@ -7,16 +7,11 @@ func _ready():
 
 	var config = ConfigFile.new()
 	var err = config.load("user://settings.cfg")
-	
-	if err == OK:
-		# Load volume
-		var volume = config.get_value("audio", "master_volume", -40)
-		$NinePatchRect/VBoxContainer/MasterVolumeSlider.value = volume
-		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), volume)
 
+	if err == OK:
 		# Load fullscreen mode index
 		var mode_index = config.get_value("display", "fullscreen_mode_index", 0)
-		$NinePatchRect/VBoxContainer/FullscreenModeOptionButton.select(mode_index)
+		$Panel/VBoxContainer/FullscreenModeOptionButton.select(mode_index)
 		if mode_index == 1:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		else:
@@ -30,7 +25,7 @@ func _ready():
 		]
 		var res_index = config.get_value("display", "resolution_index", 1)
 		res_index = clamp(res_index, 0, resolutions.size() - 1)
-		$NinePatchRect/VBoxContainer/ResolutionOptionButton.select(res_index)
+		$Panel/VBoxContainer/ResolutionOptionButton.select(res_index)
 		DisplayServer.window_set_size(resolutions[res_index])
 
 		# Recenter window
@@ -38,10 +33,6 @@ func _ready():
 		var window_size = DisplayServer.window_get_size()
 		var center_position = (screen_size - window_size) / 2
 		DisplayServer.window_set_position(center_position)
-
-func _on_MasterVolumeSlider_value_changed(value):
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), value)
-	save_settings()
 
 func _on_FullscreenModeOptionButton_item_selected(index):
 	if index == 1:
@@ -72,8 +63,7 @@ func _on_BackButton_pressed():
 
 func save_settings():
 	var config = ConfigFile.new()
-	config.set_value("audio", "master_volume", $NinePatchRect/VBoxContainer/MasterVolumeSlider.value)
-	config.set_value("display", "fullscreen_mode_index", $NinePatchRect/VBoxContainer/FullscreenModeOptionButton.selected)
-	config.set_value("display", "resolution_index", $NinePatchRect/VBoxContainer/ResolutionOptionButton.selected)
+	config.set_value("display", "fullscreen_mode_index", $Panel/VBoxContainer/FullscreenModeOptionButton.selected)
+	config.set_value("display", "resolution_index", $Panel/VBoxContainer/ResolutionOptionButton.selected)
 	config.save("user://settings.cfg")
 	print("Settings auto-saved.")

@@ -1,11 +1,13 @@
 extends Control
 
+@onready var fader: ColorRect = $Fader
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	fader.mouse_filter = Control.MOUSE_FILTER_IGNORE  # optional safety
 
 func _on_start_button_pressed() -> void:
+	if fader:
+		await fader.fade_in()
 	get_tree().change_scene_to_file("res://scenes/dialogue1.tscn")
 
 func _on_quit_button_pressed() -> void:

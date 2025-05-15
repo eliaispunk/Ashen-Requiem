@@ -1,9 +1,17 @@
 [gd_scene load_steps=6 format=3 uid="uid://di75nnsxbxkff"]
 
 [ext_resource type="Script" uid="uid://csrxwuwl5yb2q" path="res://scenes/GameOverMenu.gd" id="1_prwox"]
-[ext_resource type="Texture2D" uid="uid://4m4ahmkebk6" path="res://UI_Sprite.png" id="2_4j5i6"]
 [ext_resource type="FontFile" uid="uid://dg6iivcilg3ml" path="res://alagard.ttf" id="2_wp3el"]
 [ext_resource type="Theme" uid="uid://cwe4xop3am2ut" path="res://scenes/theme.tres" id="3_isdfh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wp3el"]
+bg_color = Color(0.25098, 0.231373, 0.227451, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 4
+shadow_offset = Vector2(9, 15)
 
 [sub_resource type="Theme" id="Theme_jbj1t"]
 
@@ -18,36 +26,31 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_prwox")
 
-[node name="NinePatchRect" type="NinePatchRect" parent="."]
+[node name="Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -394.0
-offset_top = -272.0
-offset_right = 394.0
-offset_bottom = 272.0
+offset_left = -391.0
+offset_top = -282.0
+offset_right = 391.0
+offset_bottom = 282.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_4j5i6")
-region_rect = Rect2(175, 0, 81, 70)
-patch_margin_left = 15
-patch_margin_top = 22
-patch_margin_right = 16
-patch_margin_bottom = 16
+theme_override_styles/panel = SubResource("StyleBoxFlat_wp3el")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -318.5
+offset_left = -350.0
 offset_top = -215.0
-offset_right = 318.5
+offset_right = 350.0
 offset_bottom = 215.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -55,7 +58,7 @@ theme = ExtResource("3_isdfh")
 theme_override_constants/separation = 23
 alignment = 1
 
-[node name="RestartButton" type="Button" parent="NinePatchRect/VBoxContainer"]
+[node name="RestartButton" type="Button" parent="Panel/VBoxContainer"]
 texture_filter = 1
 custom_minimum_size = Vector2(700, 0)
 layout_mode = 2
@@ -66,7 +69,7 @@ theme_override_fonts/font = ExtResource("2_wp3el")
 theme_override_font_sizes/font_size = 60
 text = "Restart"
 
-[node name="OptionsButton" type="Button" parent="NinePatchRect/VBoxContainer"]
+[node name="OptionsButton" type="Button" parent="Panel/VBoxContainer"]
 texture_filter = 1
 custom_minimum_size = Vector2(700, 0)
 layout_mode = 2
@@ -77,7 +80,7 @@ theme_override_fonts/font = ExtResource("2_wp3el")
 theme_override_font_sizes/font_size = 60
 text = "Settings"
 
-[node name="MainMenuButton" type="Button" parent="NinePatchRect/VBoxContainer"]
+[node name="MainMenuButton" type="Button" parent="Panel/VBoxContainer"]
 texture_filter = 1
 custom_minimum_size = Vector2(700, 0)
 layout_mode = 2
@@ -85,7 +88,7 @@ theme_override_fonts/font = ExtResource("2_wp3el")
 theme_override_font_sizes/font_size = 60
 text = "Main Menu"
 
-[node name="ExitButton" type="Button" parent="NinePatchRect/VBoxContainer"]
+[node name="ExitButton" type="Button" parent="Panel/VBoxContainer"]
 texture_filter = 1
 custom_minimum_size = Vector2(700, 0)
 layout_mode = 2
@@ -96,7 +99,7 @@ theme_override_fonts/font = ExtResource("2_wp3el")
 theme_override_font_sizes/font_size = 60
 text = "Quit Game"
 
-[connection signal="pressed" from="NinePatchRect/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="NinePatchRect/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="NinePatchRect/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
-[connection signal="pressed" from="NinePatchRect/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

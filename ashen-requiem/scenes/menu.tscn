@@ -1,10 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4gtk4donm44u"]
+[gd_scene load_steps=7 format=3 uid="uid://c4gtk4donm44u"]
 
 [ext_resource type="Theme" uid="uid://cwe4xop3am2ut" path="res://scenes/theme.tres" id="1_4ytvr"]
 [ext_resource type="FontFile" uid="uid://dg6iivcilg3ml" path="res://alagard.ttf" id="1_lti8b"]
 [ext_resource type="Script" uid="uid://dleggkof0i8c2" path="res://Menu.gd" id="1_ouk20"]
 [ext_resource type="Texture2D" uid="uid://crpexus8kvfdr" path="res://mainmenu_bg.png" id="2_con2f"]
-[ext_resource type="Texture2D" uid="uid://4m4ahmkebk6" path="res://UI_Sprite.png" id="6_13sgg"]
+[ext_resource type="Script" uid="uid://dvvq5xo4ejugo" path="res://scenes/fader.gd" id="6_g3eks"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ytvr"]
+bg_color = Color(0.25, 0.232375, 0.2275, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 4
+shadow_offset = Vector2(9, 15)
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -28,23 +37,15 @@ grow_vertical = 2
 scale = Vector2(0.835, 0.835)
 texture = ExtResource("2_con2f")
 
-[node name="NinePatchRect" type="NinePatchRect" parent="."]
-texture_filter = 1
+[node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 21.0
-offset_top = 384.0
-offset_right = 364.0
-offset_bottom = 691.0
-texture = ExtResource("6_13sgg")
-region_rect = Rect2(176, 0, 79, 71)
-patch_margin_left = 14
-patch_margin_top = 14
-patch_margin_right = 13
-patch_margin_bottom = 16
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
+offset_left = 30.0
+offset_top = 328.0
+offset_right = 371.0
+offset_bottom = 664.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4ytvr")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
@@ -53,35 +54,46 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -144.5
-offset_top = -122.5
+offset_top = -120.0
 offset_right = 144.5
-offset_bottom = 117.5
+offset_bottom = 120.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 28
 alignment = 1
 
-[node name="StartButton" type="Button" parent="NinePatchRect/VBoxContainer"]
+[node name="StartButton" type="Button" parent="Panel/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_lti8b")
 theme_override_font_sizes/font_size = 60
 text = "Start"
 
-[node name="OptionsButton" type="Button" parent="NinePatchRect/VBoxContainer"]
+[node name="OptionsButton" type="Button" parent="Panel/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_lti8b")
 theme_override_font_sizes/font_size = 60
 text = "Settings"
 
-[node name="QuitButton" type="Button" parent="NinePatchRect/VBoxContainer"]
+[node name="QuitButton" type="Button" parent="Panel/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_lti8b")
 theme_override_font_sizes/font_size = 60
 text = "Quit"
 
-[connection signal="pressed" from="NinePatchRect/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="NinePatchRect/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="NinePatchRect/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[node name="Fader" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("6_g3eks")
+
+[connection signal="pressed" from="Panel/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

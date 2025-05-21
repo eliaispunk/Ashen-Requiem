@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://b7futyrsvo32w"]
+[gd_scene load_steps=8 format=3 uid="uid://dou84jp0mn0is"]
 
-[ext_resource type="Texture2D" uid="uid://g37g7hqus2gu" path="res://dialogue_bg.png" id="1_a4sfc"]
-[ext_resource type="Script" uid="uid://cvlsn3inkyo8x" path="res://scenes/Dialogue1.gd" id="1_vghht"]
-[ext_resource type="Script" uid="uid://dvvq5xo4ejugo" path="res://scenes/fader.gd" id="2_i7ml2"]
+[ext_resource type="Script" uid="uid://csh100mhymhl4" path="res://scenes/Memory1.gd" id="1_kwftr"]
+[ext_resource type="Texture2D" uid="uid://bklckgjvsm14l" path="res://memory1_bg.png" id="2_jhdhx"]
+[ext_resource type="Script" uid="uid://dvvq5xo4ejugo" path="res://scenes/fader.gd" id="2_kwftr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vghht"]
 bg_color = Color(0.25098, 0.231373, 0.227451, 1)
@@ -51,21 +51,23 @@ _data = {
 }
 
 [node name="CanvasLayer" type="CanvasLayer"]
-script = ExtResource("1_vghht")
+script = ExtResource("1_kwftr")
 
 [node name="Background" type="TextureRect" parent="."]
 texture_filter = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -3.0
-offset_top = -304.0
-offset_right = 253.0
-offset_bottom = 20.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -652.0
+offset_top = -503.0
+offset_right = 884.0
+offset_bottom = 521.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_a4sfc")
-metadata/_edit_use_anchors_ = true
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("2_jhdhx")
 
 [node name="DialogueBox" type="Panel" parent="."]
 offset_left = 171.0
@@ -117,5 +119,5 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
-script = ExtResource("2_i7ml2")
+script = ExtResource("2_kwftr")
 metadata/_edit_use_anchors_ = true

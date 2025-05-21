@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://defgf7kvif5gk"]
+[gd_scene load_steps=25 format=3 uid="uid://defgf7kvif5gk"]
 
 [ext_resource type="Script" uid="uid://bia7uba7c4yu5" path="res://scenes/Level.gd" id="1_trceg"]
 [ext_resource type="Texture2D" uid="uid://cx4kjvu7dg6x0" path="res://background 1.png" id="1_ya4ey"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dme1w4pih0y1m" path="res://scenes/character_body_2d_2.tscn" id="7_muem4"]
 [ext_resource type="Texture2D" uid="uid://drqe404rud2eh" path="res://decorative.png" id="9_0ld40"]
 [ext_resource type="PackedScene" uid="uid://7u0j8o6pivyc" path="res://scenes/enemy.tscn" id="10_gqmmt"]
+[ext_resource type="PackedScene" uid="uid://cyvwmwq3fg6xy" path="res://scenes/memory_node.tscn" id="11_jbj1t"]
 [ext_resource type="Script" uid="uid://yh8jwdlerw2q" path="res://fall_area.gd" id="11_yc10j"]
 [ext_resource type="Script" uid="uid://dvvq5xo4ejugo" path="res://scenes/fader.gd" id="12_eb6dy"]
 [ext_resource type="Script" uid="uid://dgu0bpr46c64y" path="res://scenes/UI.gd" id="13_muem4"]
@@ -4745,20 +4746,15 @@ layer_0/tile_data = PackedInt32Array(131056, 262144, 22, 196592, 262144, 23, 262
 tile_set = SubResource("TileSet_dg77c")
 format = 2
 
-[node name="MainCharacter" parent="." instance=ExtResource("7_muem4")]
-position = Vector2(157, 269)
-scale = Vector2(2, 2)
-
-[node name="Camera2D" type="Camera2D" parent="MainCharacter"]
-position = Vector2(55, -72.5)
-position_smoothing_enabled = true
-
 [node name="TileMap3" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_w48qg")
 format = 2
 
 [node name="Enemy" parent="." instance=ExtResource("10_gqmmt")]
-position = Vector2(707, 215)
+position = Vector2(697, 276)
+
+[node name="MemoryNode" parent="." instance=ExtResource("11_jbj1t")]
+position = Vector2(982, 272)
 
 [node name="FallArea" type="Area2D" parent="."]
 position = Vector2(573, 436)
@@ -4767,6 +4763,14 @@ script = ExtResource("11_yc10j")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FallArea"]
 position = Vector2(367.5, -16.5)
 shape = SubResource("RectangleShape2D_dg77c")
+
+[node name="MainCharacter" parent="." instance=ExtResource("7_muem4")]
+position = Vector2(157, 269)
+scale = Vector2(2, 2)
+
+[node name="Camera2D" type="Camera2D" parent="MainCharacter"]
+position = Vector2(55, -72.5)
+position_smoothing_enabled = true
 
 [node name="UI" type="CanvasLayer" parent="."]
 process_mode = 3

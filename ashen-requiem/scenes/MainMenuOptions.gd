@@ -62,8 +62,7 @@ func _on_MasterVolumeSlider_value_changed(value):
 	save_settings()
 
 func _on_BackButton_pressed():
-	visible = false
-	get_parent().get_node("GameOverMenu").visible = true
+	get_tree().change_scene_to_file("res://scenes/menu.tscn")
 
 func save_settings():
 	var config = ConfigFile.new()

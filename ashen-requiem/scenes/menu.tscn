@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c4gtk4donm44u"]
+[gd_scene load_steps=8 format=3 uid="uid://c4gtk4donm44u"]
 
 [ext_resource type="Theme" uid="uid://cwe4xop3am2ut" path="res://scenes/theme.tres" id="1_4ytvr"]
 [ext_resource type="FontFile" uid="uid://dg6iivcilg3ml" path="res://alagard.ttf" id="1_lti8b"]
 [ext_resource type="Script" uid="uid://dleggkof0i8c2" path="res://Menu.gd" id="1_ouk20"]
 [ext_resource type="Texture2D" uid="uid://crpexus8kvfdr" path="res://mainmenu_bg.png" id="2_con2f"]
+[ext_resource type="Texture2D" uid="uid://bm7xet7yvs27m" path="res://logo.png" id="4_g3eks"]
 [ext_resource type="Script" uid="uid://dvvq5xo4ejugo" path="res://scenes/fader.gd" id="6_g3eks"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ytvr"]
@@ -37,12 +38,22 @@ grow_vertical = 2
 scale = Vector2(0.835, 0.835)
 texture = ExtResource("2_con2f")
 
+[node name="TextureRect2" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = -150.0
+offset_top = -1.0
+offset_right = 577.5
+offset_bottom = 387.0
+texture = ExtResource("4_g3eks")
+expand_mode = 3
+
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 30.0
-offset_top = 328.0
-offset_right = 371.0
-offset_bottom = 664.0
+offset_left = 54.0
+offset_top = 308.0
+offset_right = 395.0
+offset_bottom = 644.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_4ytvr")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]

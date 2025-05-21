@@ -20,3 +20,8 @@ func _on_Player_died():
 
 	await fader.fade_in()                      # Fade to black
 	game_over_menu.visible = true
+	
+func fade_to_memory(scene_path: String):
+	var fader = get_node("UI/Fader")
+	await fader.fade_in()  # Fade to black
+	get_tree().change_scene_to_file(scene_path)

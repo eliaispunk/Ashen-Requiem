@@ -1,15 +1,14 @@
+Label
+TextureRect
 AudioStreamPlayer
 AudioStreamPlayer2D
 Node
 Panel
 AnimationPlayer
-Label
 Control
 WorldEnvironment
 ColorRect
-TextureRect
 CanvasLayer
 NinePatchRect
 MarginContainer
 Button
-VBoxContainer

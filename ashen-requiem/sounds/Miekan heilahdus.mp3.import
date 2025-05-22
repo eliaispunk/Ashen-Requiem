@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://pi2nbeuo3cnu"
+path="res://.godot/imported/Miekan heilahdus.mp3-13efbb956255584a1f5009e9d2264736.mp3str"
+
+[deps]
+
+source_file="res://sounds/Miekan heilahdus.mp3"
+dest_files=["res://.godot/imported/Miekan heilahdus.mp3-13efbb956255584a1f5009e9d2264736.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

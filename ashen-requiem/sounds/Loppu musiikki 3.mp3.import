@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c8ctv27sucqnf"
+path="res://.godot/imported/Loppu musiikki 3.mp3-5379bd5d7e08e4cc9acdf8e3611095ff.mp3str"
+
+[deps]
+
+source_file="res://sounds/Loppu musiikki 3.mp3"
+dest_files=["res://.godot/imported/Loppu musiikki 3.mp3-5379bd5d7e08e4cc9acdf8e3611095ff.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

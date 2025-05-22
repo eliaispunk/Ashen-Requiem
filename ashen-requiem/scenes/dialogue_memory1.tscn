@@ -1,10 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://dou84jp0mn0is"]
+[gd_scene load_steps=12 format=3 uid="uid://dou84jp0mn0is"]
 
 [ext_resource type="Script" uid="uid://csh100mhymhl4" path="res://scenes/Memory1.gd" id="1_kwftr"]
 [ext_resource type="Texture2D" uid="uid://bklckgjvsm14l" path="res://memory1_bg.png" id="2_jhdhx"]
 [ext_resource type="Script" uid="uid://dvvq5xo4ejugo" path="res://scenes/fader.gd" id="2_kwftr"]
+[ext_resource type="AudioStream" uid="uid://cripowt1rftxq" path="res://sounds/typing.mp3" id="4_jhdhx"]
+[ext_resource type="PackedScene" uid="uid://di75nnsxbxkff" path="res://game_over_menu.tscn" id="5_cumxf"]
+[ext_resource type="Script" uid="uid://dgu0bpr46c64y" path="res://scenes/UI.gd" id="5_pit0p"]
+[ext_resource type="PackedScene" uid="uid://b6m3iaec36uci" path="res://scenes/options_menu.tscn" id="6_pit0p"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vghht"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pit0p"]
 bg_color = Color(0.25098, 0.231373, 0.227451, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
@@ -70,21 +74,27 @@ scale = Vector2(0.85, 0.85)
 texture = ExtResource("2_jhdhx")
 
 [node name="DialogueBox" type="Panel" parent="."]
+anchors_preset = -1
+anchor_left = -0.096875
+anchor_top = 0.0791667
+anchor_right = 0.0914062
+anchor_bottom = 0.0791667
 offset_left = 171.0
-offset_top = 459.0
+offset_top = 453.0
 offset_right = 1108.0
-offset_bottom = 656.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_vghht")
-metadata/_edit_use_anchors_ = true
+offset_bottom = 620.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_pit0p")
 
 [node name="DialogueText" type="Label" parent="DialogueBox"]
 texture_filter = 1
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchors_preset = -1
+anchor_left = 0.394312
+anchor_top = 0.58982
+anchor_right = 0.592105
+anchor_bottom = 0.58982
 offset_left = -444.5
 offset_top = -78.5
 offset_right = 408.5
@@ -92,12 +102,17 @@ offset_bottom = 77.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 35
-autowrap_mode = 2
+autowrap_mode = 3
 metadata/_edit_use_anchors_ = true
 
 [node name="ContinuePrompt" type="Label" parent="DialogueBox"]
 texture_filter = 1
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.202886
+anchor_top = -0.167665
+anchor_right = 0.202886
+anchor_bottom = -0.167665
 offset_left = 893.0
 offset_top = 151.0
 offset_right = 1042.0
@@ -121,3 +136,25 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 script = ExtResource("2_kwftr")
 metadata/_edit_use_anchors_ = true
+
+[node name="TypingSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_jhdhx")
+pitch_scale = 0.88
+parameters/looping = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+process_mode = 3
+script = ExtResource("5_pit0p")
+
+[node name="PauseDimmer" type="ColorRect" parent="UI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="GameOverMenu" parent="UI" instance=ExtResource("5_cumxf")]
+
+[node name="OptionsMenu" parent="UI" instance=ExtResource("6_pit0p")]

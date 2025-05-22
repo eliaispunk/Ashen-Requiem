@@ -4689,9 +4689,10 @@ background_mode = 1
 script = ExtResource("1_trceg")
 
 [node name="ParallaxBackground" type="Node2D" parent="."]
-position = Vector2(426, 239)
+position = Vector2(426, 150)
 
 [node name="SkyLayer" type="Parallax2D" parent="ParallaxBackground"]
+texture_filter = 1
 texture_repeat = 2
 scroll_scale = Vector2(0.1, 0)
 scroll_offset = Vector2(0, 100)
@@ -4704,6 +4705,7 @@ position = Vector2(-1, -113)
 texture = ExtResource("1_ya4ey")
 
 [node name="Background1" type="Parallax2D" parent="ParallaxBackground"]
+texture_filter = 1
 texture_repeat = 2
 scroll_scale = Vector2(0, 0)
 scroll_offset = Vector2(0, 170)
@@ -4711,9 +4713,11 @@ repeat_size = Vector2(848, 0)
 repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Background1"]
+texture_filter = 1
 texture = ExtResource("2_eb6dy")
 
 [node name="Background2" type="Parallax2D" parent="ParallaxBackground"]
+texture_filter = 1
 texture_repeat = 2
 scroll_scale = Vector2(0.1, 0.1)
 scroll_offset = Vector2(0, 190)
@@ -4721,9 +4725,11 @@ repeat_size = Vector2(848, 0)
 repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Background2"]
+texture_filter = 1
 texture = ExtResource("3_trceg")
 
 [node name="Background3" type="Parallax2D" parent="ParallaxBackground"]
+texture_filter = 1
 texture_repeat = 2
 scroll_scale = Vector2(0.2, 0.2)
 scroll_offset = Vector2(0, 41)
@@ -4731,6 +4737,7 @@ repeat_size = Vector2(848, 0)
 repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Background3"]
+texture_filter = 1
 position = Vector2(0, 117)
 texture = ExtResource("4_a8y0u")
 
@@ -4769,7 +4776,8 @@ position = Vector2(157, 269)
 scale = Vector2(2, 2)
 
 [node name="Camera2D" type="Camera2D" parent="MainCharacter"]
-position = Vector2(55, -72.5)
+position = Vector2(-1, -31.5)
+zoom = Vector2(1.435, 1.435)
 position_smoothing_enabled = true
 
 [node name="UI" type="CanvasLayer" parent="."]
@@ -4777,6 +4785,7 @@ process_mode = 3
 script = ExtResource("13_muem4")
 
 [node name="Fader" type="ColorRect" parent="UI"]
+visible = false
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
@@ -4785,6 +4794,15 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 script = ExtResource("12_eb6dy")
+
+[node name="PauseDimmer" type="ColorRect" parent="UI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
 
 [node name="GameOverMenu" parent="UI" instance=ExtResource("14_jbj1t")]
 

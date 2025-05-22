@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://dme1w4pih0y1m"]
+[gd_scene load_steps=68 format=3 uid="uid://dme1w4pih0y1m"]
 
 [ext_resource type="Texture2D" uid="uid://mwjnjgajmfuo" path="res://attack.png" id="2_bhr3b"]
 [ext_resource type="Texture2D" uid="uid://o7fe2jkj24sd" path="res://idle.png" id="3_gr2ii"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cn1w6e2vs82mg" path="res://jump.png" id="4_qeo7v"]
 [ext_resource type="Script" uid="uid://b8iu7gwwhlhfi" path="res://scenes/character_body_2d_2.gd" id="5_bhr3b"]
 [ext_resource type="Texture2D" uid="uid://tft2jl78l1k" path="res://run.png" id="5_e2jhp"]
+[ext_resource type="AudioStream" uid="uid://rhei0xbdyiu1" path="res://sounds/walking.mp3" id="9_llaa4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_llaa4"]
 atlas = ExtResource("2_bhr3b")
@@ -447,7 +448,6 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_sxjx5")
 animation = &"hurt"
 autoplay = "default"
-frame_progress = 1.0
 
 [node name="CollisionArea" type="CollisionShape2D" parent="."]
 position = Vector2(-4.33333, -3.5)
@@ -461,6 +461,11 @@ monitorable = false
 position = Vector2(-2.66666, -3.66667)
 shape = SubResource("RectangleShape2D_gr2ii")
 debug_color = Color(0.898039, 0.247059, 0.505882, 0.419608)
+
+[node name="WalkSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_llaa4")
+pitch_scale = 1.23
+parameters/looping = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_Sprite2D_animation_finished"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="AnimatedSprite2D" method="_on_Sprite2D_animation_finished"]

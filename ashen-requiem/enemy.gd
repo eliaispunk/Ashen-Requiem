@@ -11,6 +11,7 @@ const ATTACK_AREA_LEFT = -35.0
 @onready var attack_collider: CollisionShape2D = $AttackArea/AttackShape
 @onready var main_collider: CollisionShape2D = $CollisionArea
 @onready var attack_cooldown_timer: Timer = $AttackCooldownTimer
+@onready var attack_sfx: AudioStreamPlayer2D = $AttackSFX
 
 var target = null
 var health := 3
@@ -118,6 +119,7 @@ func attack():
 	movement_locked = true
 	velocity.x = 0
 	sprite_2d.play("attack")
+	attack_sfx.play()
 
 	await sprite_2d.animation_finished
 	_on_attack_finished()
@@ -130,10 +132,6 @@ func _on_attack_finished():
 	movement_locked = false
 	attack_on_cooldown = true
 	attack_cooldown_timer.start()
-
-	for body in attack_area.get_overlapping_bodies():
-		if body.is_in_group("players") and body.has_method("take_damage") and not body.is_dead:
-			body.take_damage(1)
 
 	if target and is_instance_valid(target):
 		if global_position.distance_to(target.global_position) <= DETECTION_RANGE:
@@ -190,9 +188,6 @@ func die():
 	is_hurt = false
 	movement_locked = true
 
-	main_collider.disabled = true
-	attack_collider.disabled = true
-
 	set_collision_layer(0)
 	set_collision_mask(0)
 
@@ -205,3 +200,12 @@ func die():
 func _on_AttackCooldownTimer_timeout() -> void:
 	attack_on_cooldown = false
 	can_attack = true
+
+func _apply_attack_damage():
+	for body in attack_area.get_overlapping_bodies():
+		if body.is_in_group("players") and body.has_method("take_damage") and not body.is_dead:
+			body.take_damage(1)
+
+func _on_animated_sprite_2d_frame_changed() -> void:
+	if sprite_2d.animation == "attack" and sprite_2d.frame == 3:
+		_apply_attack_damage()

@@ -1,8 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://b7futyrsvo32w"]
+[gd_scene load_steps=12 format=3 uid="uid://b7futyrsvo32w"]
 
 [ext_resource type="Texture2D" uid="uid://g37g7hqus2gu" path="res://dialogue_bg.png" id="1_a4sfc"]
 [ext_resource type="Script" uid="uid://cvlsn3inkyo8x" path="res://scenes/Dialogue1.gd" id="1_vghht"]
 [ext_resource type="Script" uid="uid://dvvq5xo4ejugo" path="res://scenes/fader.gd" id="2_i7ml2"]
+[ext_resource type="AudioStream" uid="uid://cripowt1rftxq" path="res://sounds/typing.mp3" id="4_6b7jp"]
+[ext_resource type="Script" uid="uid://dgu0bpr46c64y" path="res://scenes/UI.gd" id="5_jpk3t"]
+[ext_resource type="PackedScene" uid="uid://di75nnsxbxkff" path="res://game_over_menu.tscn" id="5_qglx5"]
+[ext_resource type="PackedScene" uid="uid://b6m3iaec36uci" path="res://scenes/options_menu.tscn" id="6_jpk3t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vghht"]
 bg_color = Color(0.25098, 0.231373, 0.227451, 1)
@@ -68,21 +72,27 @@ texture = ExtResource("1_a4sfc")
 metadata/_edit_use_anchors_ = true
 
 [node name="DialogueBox" type="Panel" parent="."]
+anchors_preset = -1
+anchor_left = -0.096875
+anchor_top = 0.0791667
+anchor_right = 0.0914062
+anchor_bottom = 0.0791667
 offset_left = 171.0
-offset_top = 459.0
+offset_top = 453.0
 offset_right = 1108.0
-offset_bottom = 656.0
+offset_bottom = 620.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_vghht")
-metadata/_edit_use_anchors_ = true
 
 [node name="DialogueText" type="Label" parent="DialogueBox"]
 texture_filter = 1
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchors_preset = -1
+anchor_left = 0.394312
+anchor_top = 0.58982
+anchor_right = 0.548812
+anchor_bottom = 0.58982
 offset_left = -444.5
 offset_top = -78.5
 offset_right = 408.5
@@ -90,12 +100,17 @@ offset_bottom = 77.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 35
-autowrap_mode = 2
+autowrap_mode = 3
 metadata/_edit_use_anchors_ = true
 
 [node name="ContinuePrompt" type="Label" parent="DialogueBox"]
 texture_filter = 1
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.202886
+anchor_top = -0.167665
+anchor_right = 0.202886
+anchor_bottom = -0.167665
 offset_left = 893.0
 offset_top = 151.0
 offset_right = 1042.0
@@ -119,3 +134,25 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 script = ExtResource("2_i7ml2")
 metadata/_edit_use_anchors_ = true
+
+[node name="TypingSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_6b7jp")
+pitch_scale = 0.88
+parameters/looping = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+process_mode = 3
+script = ExtResource("5_jpk3t")
+
+[node name="PauseDimmer" type="ColorRect" parent="UI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="GameOverMenu" parent="UI" instance=ExtResource("5_qglx5")]
+
+[node name="OptionsMenu" parent="UI" instance=ExtResource("6_jpk3t")]

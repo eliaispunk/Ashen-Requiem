@@ -4785,7 +4785,6 @@ process_mode = 3
 script = ExtResource("13_muem4")
 
 [node name="Fader" type="ColorRect" parent="UI"]
-visible = false
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0

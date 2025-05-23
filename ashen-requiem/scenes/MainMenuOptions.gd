@@ -30,7 +30,7 @@ func _ready():
 		var center_position = (screen_size - window_size) / 2
 		DisplayServer.window_set_position(center_position)
 		
-		var volume = config.get_value("audio", "master_volume_db", -15.0)
+		var volume = config.get_value("audio", "master_volume_db", -10.0)
 		$Panel/VBoxContainer/MasterVolumeSlider.value = volume
 		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), volume)
 

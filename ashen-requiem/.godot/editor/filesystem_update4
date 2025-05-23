@@ -8,3 +8,10 @@ res://scenes/dialogue_memory1.tscn
 res://game_over_menu.tscn
 res://scenes/options_menu.tscn
 res://scenes/character_body_2d_2.tscn
+res://scenes/OptionsMenu.gd
+res://scenes/option_mainmenu.tscn
+res://scenes/MainMenuOptions.gd
+res://MusicPlayer.tscn
+res://scenes/Memory1.gd
+res://MusicManager.gd
+res://scenes/enemy.tscn

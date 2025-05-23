@@ -1,10 +1,10 @@
+AudioStreamPlayer
+Node
 ColorRect
 Button
 AudioStreamPlayer2D
-AudioStreamPlayer
 Label
 TextureRect
-Node
 Panel
 AnimationPlayer
 Control

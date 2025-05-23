@@ -1,10 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://gqlq1ahug1uv"]
+[gd_scene load_steps=3 format=3 uid="uid://gqlq1ahug1uv"]
 
-[ext_resource type="AudioStream" uid="uid://b0ypt0088677w" path="res://soft-piano-100-bpm-121529.mp3" id="1_1a72i"]
+[ext_resource type="AudioStream" uid="uid://d3ifpqi5gnmpx" path="res://sounds/Dark-Lands.mp3" id="1_1a72i"]
+[ext_resource type="Script" uid="uid://cu8va520spreh" path="res://MusicManager.gd" id="1_6cpxb"]
 
 [node name="Node" type="Node"]
+script = ExtResource("1_6cpxb")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
+[node name="MainBGM" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("1_1a72i")
+volume_db = -10.0
 autoplay = true
 parameters/looping = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

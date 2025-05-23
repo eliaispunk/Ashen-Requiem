@@ -137,6 +137,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="TypingSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_6b7jp")
+volume_db = 5.0
 pitch_scale = 0.88
 parameters/looping = true
 

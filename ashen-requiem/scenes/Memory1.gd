@@ -91,7 +91,7 @@ func start_typing():
 func _typing_coroutine():
 	while char_index < current_text.length():
 		if is_paused:
-			await get_tree().process_frame  # Wait for unpause
+			await get_tree().create_timer(0).timeout
 			continue
 
 		dialogue_label.text += current_text[char_index]

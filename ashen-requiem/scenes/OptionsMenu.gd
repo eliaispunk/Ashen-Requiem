@@ -12,12 +12,12 @@ func _ready():
 
 	var mode_index := 0
 	var res_index := 1
-	var volume := -15.0
+	var volume := -10.0
 
 	if err == OK:
 		mode_index = config.get_value("display", "fullscreen_mode_index", 0)
 		res_index = clamp(config.get_value("display", "resolution_index", 1), 0, resolutions.size() - 1)
-		volume = config.get_value("audio", "master_volume_db", -15.0)
+		volume = config.get_value("audio", "master_volume_db", -10.0)
 
 	$Panel/VBoxContainer/FullscreenModeOptionButton.select(mode_index)
 	$Panel/VBoxContainer/ResolutionOptionButton.select(res_index)
